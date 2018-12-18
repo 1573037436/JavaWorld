@@ -3,7 +3,27 @@ package com.zzj.javaSE.model;
 public class Employee implements Cloneable {
 	private String name;
 	private int age;
+	private char sex;
+	private int salary;
 	private Address address;
+	
+	
+
+	public Employee(String name, int age, char sex, int salary) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		this.salary = salary;
+	}
+
+	
+	public Employee(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
 
 	public String getName() {
 		return name;
@@ -54,9 +74,26 @@ public class Employee implements Cloneable {
 		return employee;
 	}
 
+	public char getSex() {
+		return sex;
+	}
+
+	public void setSex(char sex) {
+		this.sex = sex;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", age=" + age + ", address=" + address + "]";
+		return "Employee [name=" + name + ", age=" + age + ", sex=" + sex + ", salary=" + salary + ", address="
+				+ address + "]";
 	}
 
 	
