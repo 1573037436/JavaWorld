@@ -1,4 +1,6 @@
-package chainOfrespon;
+package com.chainOfrespon;
+
+
 
 public class LeaveRequest {
 	private String name;//姓名

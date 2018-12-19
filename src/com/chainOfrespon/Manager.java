@@ -1,4 +1,6 @@
-package chainOfrespon;
+package com.chainOfrespon;
+
+
 
 public class Manager extends Leader{
 

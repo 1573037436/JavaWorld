@@ -1,4 +1,6 @@
-package chainOfrespon;
+package com.chainOfrespon;
+
+
 
 public abstract class Leader {
 	protected String name;
