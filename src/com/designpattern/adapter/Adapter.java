@@ -1,4 +1,4 @@
-package com.adapter;
+package com.designpattern.adapter;
 /**
  * 适配器(继承的方式实现)
  * @author zhoucheng
