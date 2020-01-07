@@ -3,6 +3,8 @@ package com.zzj.javaSE.lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -46,10 +48,16 @@ public class LambdaTest {
     		System.out.println(bString);
     		
     		List<String> stringCollection=new ArrayList<>();
-    		stringCollection.add("baaaa");
     		stringCollection.add("bbbb");
     		stringCollection.add("bcccc");
-    		//匹配任一个
+    		stringCollection.add("baaaa");
+    		//排序
+    		List<String> afterSorted=stringCollection.stream().sorted((a,b)->a.compareTo(b)).collect(Collectors.toList());
+    		System.out.println("排序后新的list-----------------------------");
+    		afterSorted.stream().forEach(x->System.out.println(x));
+    		System.out.println("排序后原来的list-----------------------------");
+    		stringCollection.stream().forEach(x->System.out.println(x));
+    		//匹配任一个，返回boolean值
     		boolean anyStartsWithA = 
     			    stringCollection
     			        .stream()
@@ -121,5 +129,27 @@ public class LambdaTest {
         }
         return list;
     }
-
+    //串行和并行的测试
+    @Test
+    public void parallelstream(){
+    	int max = 1000000;
+    	List<String> values = new ArrayList<>(max);
+    	for (int i = 0; i < max; i++) {
+    	    UUID uuid = UUID.randomUUID();
+    	    values.add(uuid.toString());
+    	}
+    	long t0 = System.nanoTime();
+    	long count = values.stream().sorted().count();
+    	System.out.println("串行排序 -------------"+count);
+    	long t1 = System.nanoTime();
+    	long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+    	System.out.println(String.format("sequential sort took: %d ms", millis));
+    	//并行排序：
+    	long parallelt0 = System.nanoTime();
+    	long parallelcount = values.parallelStream().sorted().count();
+    	System.out.println("并行排序--------------"+parallelcount);
+    	long parallelt1 = System.nanoTime();
+    	long parallelmillis = TimeUnit.NANOSECONDS.toMillis(parallelt1 - parallelt0);
+    	System.out.println(String.format("parallel sort took: %d ms", parallelmillis));
+    }
 }

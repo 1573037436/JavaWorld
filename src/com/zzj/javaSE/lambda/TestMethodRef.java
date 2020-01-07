@@ -85,7 +85,6 @@ public class TestMethodRef {
         //调用有参构造器，取决于BiFunction中的apply方法的入参
         BiFunction<String, Integer, Employee> bg2 = Employee::new;
 
-
     }
 
 
