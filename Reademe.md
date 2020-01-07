@@ -9,3 +9,5 @@
 	  1.7 socket
 	  1.8 jdbc
 	  1.9 xml
+	  1.10 designPattern
+	  1.11 webservice

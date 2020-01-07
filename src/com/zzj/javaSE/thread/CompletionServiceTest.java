@@ -9,7 +9,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
-
+/**
+ * execute(Runnable x) 没有返回值。可以执行任务，但无法判断任务是否成功完成。——实现Runnable接口
+ * submit(Runnable x) 返回一个future。可以用这个future来判断任务是否成功完成。——实现Callable接口
+ */
 public class CompletionServiceTest {
 
 	public static void main(String[] args) throws Exception {
@@ -40,6 +43,8 @@ public class CompletionServiceTest {
         BlockingQueue<Future<Integer>> queue = new LinkedBlockingQueue<Future<Integer>>();  
         System.out.println("阻塞列队获取结果....................");
         for (int i = 0; i < 10; i++) {
+        	//如果不需要异步返回结果，请不要用submit方法,异常日志在submit方法中给catch住，没有打印出来，而被捕获的异常，
+        	//被包装在返回的结果类FutureJoinTask中，并没有再次抛出。
             Future<Integer> future = exec.submit(getTask(i));
             queue.add(future);  //先进先出排序
         }
