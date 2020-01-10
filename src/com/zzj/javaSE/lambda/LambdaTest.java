@@ -30,7 +30,17 @@ public class LambdaTest {
     		       "Stanislas Wawrinka",  
     		       "David Ferrer","Roger Federer",  
     		       "Andy Murray","Tomas Berdych",  
-    		       "Juan Martin Del Potro"};  
+    		       "Juan Martin Del Potro"}; 
+    		//ArrayList<E> extends AbstractList<E>,其实ArrayList并不是我们平时用的ArrayList。
+    		//而是Arrays里面的一个内部类。而且这个内部类没有add，clear，remove方法，
+    		//所以抛出的异常其实来自于AbstractList
+    		//传递的数组必须是对象数组，而不是基本类型
+    		//总结:
+    		//1、Arrays.asList()不要乱用，asList方法只适合转换成List之后进行读取的基本操作,底层其实还是数组。
+
+    		//2、如果使用了Arrays.asList()的话，最好不要使用其集合的操作方法。
+
+    		//3、List list = new ArrayList<>(Arrays.asList("a", "b", "c"))可以在外面这样包一层真正的ArrayList。
     		List<String> players =  Arrays.asList(atp);  
     		  
     		// 以前的循环方式  

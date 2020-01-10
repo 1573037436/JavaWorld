@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.zzj.javaSE.model.Employee;
 
 /** 三种语法格式
+* Consumer, Supplier,Function的用法
 * 1.对象 :: 实例方法名
 *
 * 2.类 :: 静态方法名

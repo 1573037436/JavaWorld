@@ -1,13 +1,14 @@
 package com.zzj.javaSE.model;
 
+import java.util.Optional;
+
 public class Employee implements Cloneable {
 	private String name;
 	private int age;
 	private char sex;
 	private int salary;
 	private Address address;
-	
-	
+	private String password;
 
 	public Employee(String name, int age, char sex, int salary) {
 		super();
@@ -88,6 +89,14 @@ public class Employee implements Cloneable {
 
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+	
+	public Optional<String> getPassword(){
+		 return Optional.ofNullable(password);
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
