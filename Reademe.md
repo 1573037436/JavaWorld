@@ -11,3 +11,5 @@
 	  1.9 xml
 	  1.10 designPattern
 	  1.11 webservice
+	 JavaEE:
+	  2.1 Mybatis
