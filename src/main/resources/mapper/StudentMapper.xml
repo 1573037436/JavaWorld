@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  命名空间配置DAO层接口-->
 <mapper namespace="com.zzj.javaEE.mybatis.StudentMapper">
-  <resultMap id="BaseResultMap" type="com.zzj.javaSE.model.Student">
-    <id column="student_id" jdbcType="INTEGER" property="studentId" />
+  <resultMap id="BaseResultMap" type="Student"><!--此处可以直接写Student是因为mybatis-config.xml中配置了<typeAliases>  -->
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
-    <result column="locked" jdbcType="TINYINT" property="locked" />
-    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="className" jdbcType="VARCHAR" property="className" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date" />
   </resultMap>
   <sql id="Base_Column_List">
-    student_id, name, phone, email, sex, locked, gmt_created, gmt_modified
+    id, name, sex, number,className,createTime
   </sql>
   <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select <include refid="Base_Column_List"/>
     from student
   </select>
+  <select id="findById" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from student where id=#{id}
+  </select>
+  <!-- 新增学生, 数据库增加语句： #传入的参数在SQL中显示为字符串，#方式能够很大程度防止sql注入；$传入的参数在SqL中直接显示为传入的值，$方式无法防止Sql注入。-->
+  <select id="addStudent" parameterType="Student"><!-- #{createTime,jdbcType=TIMESTAMP} -->
+    insert into student(name, sex, number,className,createTime) values(#{name},#{sex},#{number},#{className},now())
+  </select>
+  <!--修改学生  -->
+  <select id="updateStudent" parameterType="Student">
+    update student set sex=#{sex},className=#{className} where name=#{name}
+  </select>
+  <!--删除学生  -->
+  <select id="deleteStudent" parameterType="int">
+    delete from student where id=#{id}
+  </select>
+  <!-- 动态sql: if ,choose (when, otherwise), trim (where, set), foreach-->
+<select id="findStudentWithNameLike" resultMap="BaseResultMap">
+  SELECT <include refid="Base_Column_List"></include>
+  FROM student
+  <if test="name != null">
+   WHERE name like #{name}
+  </if>
+</select>
 </mapper>

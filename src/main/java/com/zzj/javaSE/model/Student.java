@@ -1,5 +1,7 @@
 package com.zzj.javaSE.model;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -11,10 +13,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(name = "student", propOrder = { "name", "number", "className", "sex" ,"hobby"}) 
 public class Student {
+	private String id;
 	private String name;
 	private String sex;
 	private Integer number;
 	private String className;
+	private Date createTime;
 	private List<String> hobby;
 
 	@XmlElement//@XmlAttribute
@@ -64,6 +68,27 @@ public class Student {
 		this.hobby = hobby;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", sex=" + sex + ", number=" + number + ", className="
+				+ className + ", createTime=" + createTime + "]";
+	}
+
+	public Student() {
+		super();
+	}
+	
+	
+	public Student(String name, String sex, Integer number, String className) {
+		super();
+		this.name = name;
+		this.sex = sex;
+		this.number = number;
+		this.className = className;
+	}
+
+	
 	public Student(String name, String sex, Integer number, String className, List<String> hobby) {
 		super();
 		this.name = name;
@@ -73,8 +98,20 @@ public class Student {
 		this.hobby = hobby;
 	}
 
-	public Student() {
-		super();
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }
