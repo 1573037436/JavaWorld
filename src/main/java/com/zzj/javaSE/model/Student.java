@@ -1,6 +1,5 @@
 package com.zzj.javaSE.model;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -80,15 +79,15 @@ public class Student {
 	}
 	
 	
-	public Student(String name, String sex, Integer number, String className) {
+	public Student(String name, String sex, Integer number, String className, Date createTime) {
 		super();
 		this.name = name;
 		this.sex = sex;
 		this.number = number;
 		this.className = className;
+		this.createTime = createTime;
 	}
 
-	
 	public Student(String name, String sex, Integer number, String className, List<String> hobby) {
 		super();
 		this.name = name;

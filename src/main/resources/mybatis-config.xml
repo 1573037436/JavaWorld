@@ -22,8 +22,9 @@
 			</transactionManager>
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<!--默认或使用UTC时间会导致实际与写入数据库中的时间差八小时，UTC代表的是全球标准时间 ，但是我们使用的时间是北京时区也就是东八区，领先UTC八个小时  -->
 				<property name="url"
-					value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC" />
+					value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai" />
 				<property name="username" value="root" />
 				<property name="password" value="root" />
 			</dataSource>
